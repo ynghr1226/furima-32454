@@ -66,20 +66,20 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one :shipping_adresses
+- has_one :shipping_adress
 
 
 ## shipping_adresses テーブル
 
-| Column       | Type         | Options                        |
-| ------------ | ------------ | ------------------------------ |
-| postcode     | string       | null: false                    |
-| prefecture   | string       | null: false                    |
-| city         | string       | null: false                    |
-| block        | integer      | null: false                    |
-| building     | string       | null: false                    |
-| phone_number | integer      | null: false                    |
-| order        | references   | null: false, foreign_key: true |
+| Column        | Type         | Options                        |
+| ------------- | ------------ | ------------------------------ |
+| postcode      | string       | null: false                    |
+| prefecture_id | integer      | null: false                    |
+| city          | string       | null: false                    |
+| block         | string       | null: false                    |
+| building      | string       |                                |
+| phone_number  | string       | null: false                    |
+| order         | references   | null: false, foreign_key: true |
 ### Assosiation
 
 - belongs_to :order
