@@ -6,12 +6,19 @@ class User < ApplicationRecord
 
 
   with_options presence: true do
-    validates :password,        format: { with: /\A(?=.*?[a-z])(?=.*?\d)\w{6,12}\z/ }
+    validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)\w{6,12}\z/ }
     validates :name
-    validates :last_name,       format: { with: /\A[ぁ-ゔァ-ヴ一-龥]+\z/ }
-    validates :first_name,      format: { with: /\A[ぁ-ゔァ-ヴ一-龥]+\z/ }
-    validates :last_name_kana,  format: { with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/ }
-    validates :first_name_kana, format: { with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/ }
+    
+    with_options format: { with: /\A[ぁ-ゔァ-ヴ一-龥]+\z/ } do
+      validates :last_name
+      validates :first_name
+    end
+    
+    with_options format: { with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/ } do
+      validates :last_name_kana
+      validates :first_name_kana
+    end
+
     validates :birthday
   end
 
