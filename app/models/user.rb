@@ -4,17 +4,16 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :password, presence: true,
-                       format: { with: /\A(?=.*?[a-z])(?=.*?\d)\w{6,12}\z/ }
 
-  validates :name,             presence: true
-  validates :last_name,        presence: true
-  validates :first_name,       presence: true
-  validates :last_name_kana,   presence: true,
-                               format: { with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/ }
-  validates :first_name_kana,  presence: true,
-                               format: { with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/ }
-  validates :birthday,         presence: true
+  with_options presence: true do
+    validates :password,        format: { with: /\A(?=.*?[a-z])(?=.*?\d)\w{6,12}\z/ }
+    validates :name
+    validates :last_name,       format: { with: /\A[ぁ-ゔァ-ヴ一-龥]+\z/ }
+    validates :first_name,      format: { with: /\A[ぁ-ゔァ-ヴ一-龥]+\z/ }
+    validates :last_name_kana,  format: { with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/ }
+    validates :first_name_kana, format: { with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/ }
+    validates :birthday
+  end
 
   has_many :comments
   has_many :items

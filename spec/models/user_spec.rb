@@ -80,6 +80,16 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include "First name can't be blank"
       end
+      it '苗字が全角以外だと登録できない' do
+        @user.last_name = 'ﾔﾏﾀﾞ'
+        @user.valid?
+        expect(@user.errors.full_messages).to include 'Last name is invalid'
+      end
+      it '名前が全角以外だと登録できないい' do
+        @user.first_name = 'ﾀﾛｳ'
+        @user.valid?
+        expect(@user.errors.full_messages).to include 'First name is invalid'
+      end
       it '苗字のカナが空だと登録できない' do
         @user.last_name_kana = ''
         @user.valid?
