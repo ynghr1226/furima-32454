@@ -6,15 +6,15 @@ class User < ApplicationRecord
 
 
   with_options presence: true do
-    validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)\w{6,12}\z/ }
+    validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)\w{6,12}\z/ } #半角英数字のみ
     validates :name
     
-    with_options format: { with: /\A[ぁ-ゔァ-ヴ一-龥]+\z/ } do
+    with_options format: { with: /\A[ぁ-ゔァ-ヴ一-龥]+\z/ } do #全角のみ
       validates :last_name
       validates :first_name
     end
     
-    with_options format: { with: /\A[\p{katakana}　ー－&&[^ -~｡-ﾟ]]+\z/ } do
+    with_options format: { with: /\A[\p{katakana} ー－&&[^ -~｡-ﾟ]]+\z/ } do #全角カタカナのみ 
       validates :last_name_kana
       validates :first_name_kana
     end
