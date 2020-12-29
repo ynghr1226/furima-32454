@@ -8,6 +8,9 @@ class OrderShippingAdress
     validates :block
     validates :phone_number, format: { with: /\A\d{10}\z|\A\d{11}\z/, message: 'is invalid.' }
     validates :token
+    validates :item_id
+    validates :user_id
+
   end
 
   validates :prefecture_id, numericality: { other_than: 0, message: "can't be blank" }
