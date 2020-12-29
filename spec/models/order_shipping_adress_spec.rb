@@ -10,6 +10,11 @@ RSpec.describe OrderShippingAdress, type: :model do
       it '必須項目を全て正しく入力すれば購入ができる' do
         expect(@order).to be_valid
       end
+
+      it '建物名が空でも登録できる'do
+      @order.building = ""
+      expect(@order).to be_valid
+      end
     end
 
     context '商品が購入できない時' do
@@ -43,6 +48,7 @@ RSpec.describe OrderShippingAdress, type: :model do
         expect(@order.errors.full_messages).to include "Block can't be blank"
       end
 
+
       it '電話番号が空では登録できない' do
         @order.phone_number = ''
         @order.valid?
@@ -51,6 +57,12 @@ RSpec.describe OrderShippingAdress, type: :model do
 
       it '電話番号が半角数字以外では登録できない' do
         @order.phone_number = '１１１１'
+        @order.valid?
+        expect(@order.errors.full_messages).to include 'Phone number is invalid.'
+      end
+
+      it '電話番号が半角数字以外では登録できない' do
+        @order.phone_number = '090111'
         @order.valid?
         expect(@order.errors.full_messages).to include 'Phone number is invalid.'
       end
