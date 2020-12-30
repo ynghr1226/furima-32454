@@ -27,11 +27,11 @@ class ItemsController < ApplicationController
   end
 
   def update
-    if  current_user.id == @item.user.id
+    if current_user.id == @item.user.id
       if @item.update(item_params)
-          redirect_to action: :show
-        else
-          render :edit
+        redirect_to action: :show
+      else
+        render :edit
       end
     else
       redirect_to root_path
@@ -39,7 +39,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if  current_user.id == @item.user.id
+    if current_user.id == @item.user.id
       @item.destroy
       redirect_to root_path
     end
