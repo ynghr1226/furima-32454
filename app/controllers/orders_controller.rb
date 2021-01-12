@@ -12,6 +12,7 @@ class OrdersController < ApplicationController
   end
 
   def create
+    binding.pry
     @order_shipping_adress = OrderShippingAdress.new(order_params)
     if @order_shipping_adress.valid?
       pay_item

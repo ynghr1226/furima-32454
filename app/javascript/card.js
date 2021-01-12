@@ -22,6 +22,7 @@ const pay = () => {
         const renderDom = document.getElementById("order-form");
         const tokenObj = `<input value=${token} name='token' type="hidden"> `;
         renderDom.insertAdjacentHTML("beforeend", tokenObj);
+        debugger;
       }
 
       //クレジットカード情報を削除
