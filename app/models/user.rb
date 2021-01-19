@@ -24,4 +24,10 @@ class User < ApplicationRecord
   has_many :comments
   has_many :items
   has_many :orders
+  has_many :likes
+
+  def liked_by?(item_id)
+    likes.where(item_id: item_id).exists?
+  end
+
 end

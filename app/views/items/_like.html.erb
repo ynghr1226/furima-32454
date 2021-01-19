@@ -1,0 +1,7 @@
+<% if user_signed_in? %>
+          <% if current_user.liked_by?(item.id) %>
+            <div><%= link_to 'いいね外す', destroy_like_path(item), method: :DELETE, remote: true %><%= Like.where(item_id: item.id).count %></div>
+          <% else %>
+            <div><%= link_to 'いいねする', create_like_path(item), method: :POST, remote: true %><%= Like.where(item_id: item.id).count %></div>
+          <% end %>
+          <% end %>

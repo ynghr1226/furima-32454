@@ -155,6 +155,11 @@
                   <%= image_tag "star.png", class:"star-icon" %>
                   <span class='star-count'>0</span>
                 </div>
+                <%# ここから追記 %>
+                <div id= "item_<%= item.id %>">
+              <%= render 'like', item: item %>
+              </div>
+        <%# ここまで追記した %>
               </div>
             </div>
           <% end %>
